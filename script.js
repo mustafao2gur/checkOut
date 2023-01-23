@@ -7,43 +7,50 @@ window.addEventListener("load", () => {
 select.addEventListener("click", (e) => {
   if (e.target.closest(".incr")) {
     e.target.previousElementSibling.innerText++;
+
+    calculate(e.target);
     console.log(e.target);
-    const x = e.target.previousElementSibling.innerText;
-    let y =
-      e.target.parentElement.parentElement.querySelector(".plus").innerText;
-    let z =
-      (e.target.parentElement.nextElementSibling.nextElementSibling.querySelector(
-        ".productTotalNum"
-      ).innerText = x * y);
     cal();
-    const currentTitle =
-      e.target.parentElement.parentElement.getElementsByTagName("h2")[0]
-        .innerText;
   } else if (e.target.closest(".decr")) {
-    if (e.target.nextElementSibling.innerText >1) {
+    if (e.target.nextElementSibling.innerText > 1) {
       e.target.nextElementSibling.innerText--;
-  
-      const x = e.target.nextElementSibling.innerText;
-      console.log(x);
-      const y =
-        e.target.parentElement.parentElement.querySelector(".plus").innerText;
-      console.log(y);
-      let z =
-        (e.target.parentElement.nextElementSibling.nextElementSibling.querySelector(
-          ".productTotalNum"
-        ).innerText = x * y);
 
       cal();
-    }else  {
-      console.log("deenememmemerMNFÖÇMDÇ<<");
+    }}
+ else if (e.target.getAttribute("class") == "remove"){
+   if (confirm(` will be removed!`)
+    ) {
       e.target.closest(".product").remove();
-       cal();
     }
-
-  } else if (e.target.closest(".remove")) {
-    e.target.closest(".product").remove();
+cal()
+  } 
   }
-});
+  
+ )
+
+
+   
+
+const calculate=(target)=>{
+
+ const x = target.closest(".info")
+ console.log(x);
+ let y =x.querySelector("div.price span").innerText
+ console.log(y);
+let z = x.querySelector("div.quantityBar  span.quantityNum").innerText;
+
+x.querySelector("p.productTotal span").innerText=(z*y);
+
+
+//  let z =
+//    (e.target.parentElement.nextElementSibling.nextElementSibling.querySelector(
+//      ".productTotalNum"
+//    ).innerText = x * y);
+
+
+}
+
+
 
 function cal() {
   const productTotals = document.querySelectorAll(".productTotalNum");
